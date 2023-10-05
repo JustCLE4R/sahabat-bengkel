@@ -15,13 +15,13 @@
               <th>Kategori</th>
               <th>Nama</th>
               <th>Deskripsi</th>
-              <th>Harga</th>
+              <th class="text-center">Harga</th>
               <th class="text-center">Status</th>
             </tr>
           </thead>
           <tbody class="table-hover">
             <?php 
-            $result = mysqli_query($koneksi, "SELECT * FROM onderdil");
+            $result = mysqli_query($koneksi, "SELECT * FROM onderdil ORDER BY status");
             $nomor = 1;
             while($row = mysqli_fetch_array($result)):
             ?>
@@ -31,8 +31,8 @@
               <td><?= $row['kategori']; ?></td>
               <td><?= $row['nama']; ?></td>
               <td><?= $row['deskripsi']; ?></td>
-              <td><?= $row['harga']; ?></td>
-              <td class="text-center"><?= $row['status'] == "Y" ? "Ada" : "Habis" ?></td>
+              <td class="text-center"><?= number_format($row['harga'],0,',','.'); ?></td>
+              <td class="text-center"><?= $row['status'] == "Y" ? "Tersedia" : "Habis" ?></td>
             </tr>
             <?php 
             $nomor++;

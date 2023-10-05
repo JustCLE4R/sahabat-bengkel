@@ -6,6 +6,7 @@
         <h2>
           Apa yang klien kami katakan
         </h2>
+        <a href="?page=testimoni#testimoni" class="btn btn-link">Berikan Testimoni Anda</a>
       </div>
       <div class="carousel-wrap layout_padding2-top ">
         <div class="owl-carousel">
@@ -18,7 +19,7 @@
             <div class="box">
               <div class="client_id">
                 <div class="img-box">
-                  <img src="images/testimonial/client-1.jpg" alt="">
+                  <img src="images/testimonial/<?= $row['gambar'].'.'.$row['ekstensi'] ?>" alt="" height="120">
                 </div>
                 <div class="client_detail">
                   <div class="client_info">

@@ -59,7 +59,7 @@ require './config/koneksi.php'
         <div class="container-fluid">
           <nav class="navbar navbar-expand-lg custom_nav-container ">
             <a class="navbar-brand" href="index.php">
-              <img src="images/logo.png" alt="logo" width="80">
+              <img src="images/logo.png" alt="logo" width="50">
               <span>
                 Sahabat Bengkel
               </span>
@@ -74,19 +74,25 @@ require './config/koneksi.php'
                 <li class="nav-item <?php if(!isset($_GET['page'])){ ?>active<?php } ?>">
                   <a class="nav-link" href="index.php">Beranda</a>
                 </li>
-                <li class="nav-item <?php if($_GET['page'] == 'sparepart'){ ?>active<?php } ?> "> 
+                <li class="nav-item <?php if(@$_GET['page'] == 'article'){ ?>active<?php } ?>">
+                  <a class="nav-link" href="?page=article#article">Artikel</a>
+                </li>
+                <li class="nav-item <?php if(@$_GET['page'] == 'sparepart'){ ?>active<?php } ?> "> 
                   <a class="nav-link" href="?page=sparepart#sparepart">Onderdil</a>
                 </li>
-                <li class="nav-item <?php if($_GET['page'] == 'service'){ ?>active<?php } ?>">
+                <li class="nav-item <?php if(@$_GET['page'] == 'service'){ ?>active<?php } ?>">
                   <a class="nav-link" href="?page=service#service">Layanan</a>
                 </li>
-                <li class="nav-item <?php if($_GET['page'] == 'about'){ ?>active<?php } ?>">
+                <li class="nav-item <?php if(@$_GET['page'] == 'about'){ ?>active<?php } ?>">
                   <a class="nav-link" href="?page=about#about">Tentang Kami</a>
                 </li>
-                <li class="nav-item <?php if($_GET['page'] == 'client'){ ?>active<?php } ?>">
+                <li class="nav-item <?php if(@$_GET['page'] == 'client'){ ?>active<?php } ?>">
                   <a class="nav-link" href="?page=client#client">Testimoni</a>
                 </li>
-                <li class="nav-item <?php if($_GET['page'] == 'contact'){ ?>active<?php } ?>">
+                <li class="nav-item <?php if(@$_GET['page'] == 'gallery'){ ?>active<?php } ?>">
+                  <a class="nav-link" href="?page=gallery#gallery">Galeri</a>
+                </li>
+                <li class="nav-item <?php if(@$_GET['page'] == 'contact'){ ?>active<?php } ?>">
                   <a class="nav-link" href="?page=contact#contact">Hubungi</a>
                 </li>
               </ul>

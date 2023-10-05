@@ -1,3 +1,7 @@
+<?php 
+session_start();
+require_once '../config/koneksi.php'
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,7 +33,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
@@ -41,7 +45,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="index.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -64,8 +68,10 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Master List:</h6>
             <a class="collapse-item" href="?page=sparepart">Onderdil</a>
-            <a class="collapse-item" href="?page=client">Klien</a>
+            <a class="collapse-item" href="?page=client">Testimoni</a>
             <a class="collapse-item" href="?page=contact">Hubungi</a>
+            <a class="collapse-item" href="?page=gallery">Galeri</a>
+            <a class="collapse-item" href="?page=article">Artikel</a>
           </div>
         </div>
       </li>
@@ -161,7 +167,7 @@
           }
 
           if ($halaman == '') {
-            // include 'page/home.php';
+            include 'page/home.php';
           } else if (!file_exists("page/$halaman.php")) {
             echo 'Halaman yang dicari tidak ditemukan';
           } else {
