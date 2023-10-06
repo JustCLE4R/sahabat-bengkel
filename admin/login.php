@@ -1,3 +1,35 @@
+<?php 
+  session_start();
+
+  if(@$_SESSION['username']){
+    header("location:index.php");
+  }
+  
+  if(isset($_POST['submit'])){
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    if(empty($username) || empty($password)){
+      //kalau kosong maka login lagi
+      echo "<meta http-equiv='refresh' content='0 url=index.php?page=login'>";
+    }
+    else{
+      //pengecekan
+      if($username == 'admin' && $password == 'admin'){
+        $_SESSION['username'] = $username;
+        echo "<meta http-equiv='refresh' content='0 url=index.php'>";
+      }
+      else{
+        //tidak ditemukan usernya
+        echo "<meta http-equiv='refresh' content='0 url=login.php'>";
+      }
+    }
+  }
+  if(isset($_GET['action']) == "logout"){
+    session_destroy();
+    echo "<meta http-equiv='refresh' content='0 url=../index.php'>";
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -36,20 +68,21 @@
             <div class="card-body p-0">
               <!-- Nested Row within Card Body -->
               <div class="row">
-                <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                <div class="col-lg-6 d-none d-lg-block" style="background-image: url(./img/bg-login.jpg); background-size: cover;"></div>
                 <div class="col-lg-6">
                   <div class="p-5">
                     <div class="text-center">
                       <h1 class="h4 text-gray-900 mb-4">Selamat Datang Admin Sahabat Bengkel!</h1>
                     </div>
-                    <form class="user">
+                    <form class="user" method="post" action="">
                       <div class="form-group">
                         <input
-                          type="email"
+                          type="text"
                           class="form-control form-control-user"
                           id="exampleInputEmail"
                           aria-describedby="emailHelp"
-                          placeholder="Enter Email Address..."
+                          placeholder="Username"
+                          name="username"
                         />
                       </div>
                       <div class="form-group">
@@ -58,26 +91,10 @@
                           class="form-control form-control-user"
                           id="exampleInputPassword"
                           placeholder="Password"
+                          name="password"
                         />
                       </div>
-                      <div class="form-group">
-                        <div class="custom-control custom-checkbox small">
-                          <input
-                            type="checkbox"
-                            class="custom-control-input"
-                            id="customCheck"
-                          />
-                          <label class="custom-control-label" for="customCheck"
-                            >Remember Me</label
-                          >
-                        </div>
-                      </div>
-                      <a
-                        href="index.html"
-                        class="btn btn-primary btn-user btn-block"
-                      >
-                        Login
-                      </a>
+                      <button name="submit" class="btn btn-success">Masuk</button>
                       <hr />
                   </div>
                 </div>

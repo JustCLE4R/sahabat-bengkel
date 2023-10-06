@@ -46,6 +46,9 @@ require './config/koneksi.php'
                 Telepon : +62 869 0420 0690
               </span>
             </a>
+            <a href="./admin/login.php">
+              <span class="invisible">login</span>
+            </a>
             <a href="">
               <i class="fa fa-envelope" aria-hidden="true"></i>
               <span>
