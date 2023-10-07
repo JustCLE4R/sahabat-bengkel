@@ -1,6 +1,6 @@
 <?php 
 session_start();
-require './config/koneksi.php'
+require './config/koneksi.php';
 ?>
 
 <!DOCTYPE html>
@@ -62,7 +62,7 @@ require './config/koneksi.php'
         <div class="container-fluid">
           <nav class="navbar navbar-expand-lg custom_nav-container ">
             <a class="navbar-brand" href="index.php">
-              <img src="images/logo.png" alt="logo" width="50">
+              <img src="images/logo.png" alt="logo" width="40">
               <span>
                 Sahabat Bengkel
               </span>

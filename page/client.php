@@ -19,7 +19,7 @@
             <div class="box">
               <div class="client_id">
                 <div class="img-box">
-                  <img src="images/testimonial/<?= $row['gambar'].'.'.$row['ekstensi'] ?>" alt="" height="120">
+                  <img src="images/testimonial/<?= $row['gambar'] ?>" alt="" height="120">
                 </div>
                 <div class="client_detail">
                   <div class="client_info">

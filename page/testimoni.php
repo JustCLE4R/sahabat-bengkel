@@ -1,6 +1,6 @@
 <?php 
 if(isset($_POST['submit'])){
-  $token = round(((date("dHm") + 420 / 2)) * (substr(time(),5,3) + 5)/100);
+  $token = substr(round(((date("dHm") + 420 / 2)) * (substr(time(),5,3) + 1)),2,6);
 
   $nama = $_POST['nama'];
   $testimoni = $_POST['testimoni'];
@@ -20,16 +20,14 @@ if(isset($_POST['submit'])){
   $ekstensiGambar = explode('.', $fileName);
   $ekstensiGambar = strtolower($ekstensiGambar[array_key_last($ekstensiGambar)]);
 
-  $newFileName1 = uniqid();
-  $newFileName2 = $newFileName1.'.'.$ekstensiGambar;
+  $newFileName = uniqid().'.'.$ekstensiGambar;
 
-  move_uploaded_file($tmpName, 'images/testimonial/'.$newFileName2);
+  move_uploaded_file($tmpName, 'images/testimonial/'.$newFileName);
 
   $insert = mysqli_query($koneksi, "INSERT INTO klien SET 
     nama = '$nama',
     testimoni = '$testimoni',
-    gambar = '$newFileName1',
-    ekstensi = '$ekstensiGambar'
+    gambar = '$newFileName'
   ");
 
   if($insert){

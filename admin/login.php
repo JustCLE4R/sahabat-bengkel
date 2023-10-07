@@ -8,25 +8,29 @@
   if(isset($_POST['submit'])){
     $username = $_POST['username'];
     $password = $_POST['password'];
-    if(empty($username) || empty($password)){
-      //kalau kosong maka login lagi
-      echo "<meta http-equiv='refresh' content='0 url=index.php?page=login'>";
+    //pengecekan
+    if($username == 'admin' && $password == 'admin'){
+      $_SESSION['username'] = $username;
+      header('Location: index.php');
     }
     else{
-      //pengecekan
-      if($username == 'admin' && $password == 'admin'){
-        $_SESSION['username'] = $username;
-        echo "<meta http-equiv='refresh' content='0 url=index.php'>";
+      //tidak ditemukan usernya
+      if(!isset($_SESSION['tryLogin'])){
+        $_SESSION['tryLogin'] = 1;
       }
       else{
-        //tidak ditemukan usernya
-        echo "<meta http-equiv='refresh' content='0 url=login.php'>";
+        $tryLogin = ++$_SESSION['tryLogin'];
+        if ($tryLogin > 2){
+          session_destroy();
+          header('Location: ../index.php');
+        }
       }
     }
   }
+  
   if(isset($_GET['action']) == "logout"){
     session_destroy();
-    echo "<meta http-equiv='refresh' content='0 url=../index.php'>";
+    header('Location: ../index.php');
   }
 ?>
 
@@ -83,6 +87,7 @@
                           aria-describedby="emailHelp"
                           placeholder="Username"
                           name="username"
+                          autofocus
                         />
                       </div>
                       <div class="form-group">

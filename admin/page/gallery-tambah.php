@@ -11,17 +11,15 @@ if(isset($_POST['submit'])){
     
       $ekstensiGambar = strtolower($ekstensiGambar[array_key_last($ekstensiGambar)]);
     
-      $newFileName1 = uniqid();
-      $newFileName2 = $newFileName1.'.'.$ekstensiGambar;
+      $newFileName = uniqid().'.'.$ekstensiGambar;
     
-      move_uploaded_file($tmpName, '../images/gallery/'.$newFileName2);
+      move_uploaded_file($tmpName, '../images/gallery/'.$newFileName);
     
       $insert = mysqli_query($koneksi, "INSERT INTO galeri SET 
-        nama = '$newFileName1',
-        ekstensi = '$ekstensiGambar'
+        nama = '$newFileName'
       ");
     } catch(Exception $e) {
-      echo 'Message: ' .$e->getMessage();
+      echo 'Message: ' .$e->getMessage();die();
     }
   }
   echo '<script>window.location="index.php?page=gallery"</script>';

@@ -1,5 +1,24 @@
 <?php 
-  $token = round(((date("dHm") + 420 / 2)) * (substr(time(),5,3) + 5)/100);
+$token = substr(round(((date("dHm") + 420 / 2)) * (substr(time(),5,3) + 1)),2,6);
+
+if(isset($_GET['action'])){
+  if($_GET['action'] == 'hapus'){
+    $id = $_GET['id'];
+    $nama = $_GET['nama'];
+
+    unlink("../images/testimonial/$nama");
+
+    $delete = mysqli_query($koneksi, "DELETE FROM klien WHERE id = $id");
+    if($delete){
+      // echo '<script>alert("Data Berhasil dihapus")</script>';
+      echo '<script>window.location="index.php?page=client"</script>';
+    }
+    else{
+      echo '<script>alert("Data Gagal dihapus")</script>';
+      echo '<script>window.location="index.php?page=client"</script>';
+    }
+  }
+}
 ?>
 <div class="container">
   <h5>Halaman Testimoni</h5>
@@ -32,11 +51,11 @@
           ?>
           <tr>
             <td><?= $nomor; ?></td>
-            <td><img src="../images/testimonial/<?= $row['gambar'].'.'.$row['ekstensi'] ?>" alt="testimoni" width="50"></td>
+            <td><img src="../images/testimonial/<?= $row['gambar'] ?>" alt="testimoni" width="50"></td>
             <td><?= $row['nama']; ?></td>
             <td><?= $row['testimoni']; ?></td>
             <td>
-              <a href="" class="btn btn-danger">Hapus</a>
+              <a href="?page=client&action=hapus&id=<?= $row['id'].'&nama='.$row['gambar'] ?>" class="btn btn-danger" onclick="return confirm('Yakin ingin mengahpus Testimoni?')">Hapus</a>
             </td>
           </tr>
 
